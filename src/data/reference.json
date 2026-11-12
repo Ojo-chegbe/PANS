@@ -1,0 +1,387 @@
+{
+  "hero": {
+    "eyebrow": "YOUR COMMUNITY. YOUR NEXT CHAPTER.",
+    "title": "Together, we builda better future.",
+    "description": "Your pharmacy journey is bigger than the classroom. Build new skills, find your people, and take your next step with PANS UNIJOS.",
+    "image": "/reference/1ed3c3e3cbbec397.jpg",
+    "imageAlt": "PANS UNIJOS members at a Pharmacy Week event",
+    "caption": "More than an association.",
+    "captionDescription": "A community of future pharmacists, learning, leading, and making a difference together."
+  },
+  "products": [
+    {
+      "title": "Web Design",
+      "description": "Layout, responsive design, and building real interfaces from scratch.",
+      "image": "/reference/ca1bf8c57d91ef3b.jpg",
+      "imageAlt": "Web design course — laptop screen showing code",
+      "price": 250000,
+      "type": "course",
+      "order": 0
+    },
+    {
+      "title": "Blockchain Basics",
+      "description": "How distributed ledgers work and where they're actually useful.",
+      "image": "/reference/b6124c1225f1246e.jpg",
+      "imageAlt": "Blockchain Basics course — cryptocurrency interface",
+      "price": 250000,
+      "type": "course",
+      "order": 1
+    },
+    {
+      "title": "Data Analysis",
+      "description": "Turning raw numbers into charts and decisions people can act on.",
+      "image": "/reference/53c5765eec857972.jpg",
+      "imageAlt": "Data Analysis course — charts on a computer screen",
+      "price": 250000,
+      "type": "course",
+      "order": 2
+    },
+    {
+      "title": "Digital Marketing",
+      "description": "Building an audience and campaigns that reach real people.",
+      "image": "/reference/110752fbb9febf29.jpg",
+      "imageAlt": "Digital Marketing course — marketing artwork",
+      "price": 250000,
+      "type": "course",
+      "order": 3
+    },
+    {
+      "title": "Content Creation",
+      "description": "Scripting, filming, and editing content that people finish watching.",
+      "image": "/reference/2bc3f8273028de7f.jpg",
+      "imageAlt": "Content Creation course — video camera",
+      "price": 250000,
+      "type": "course",
+      "order": 4
+    },
+    {
+      "title": "Antibacterial Hand Wash",
+      "description": "Gentle on skin, tough on germs.",
+      "image": "/reference/a1bc5f9c8d4e97d9.jpg",
+      "imageAlt": "Antibacterial hand wash bottle",
+      "price": 80000,
+      "type": "physical",
+      "order": 5
+    },
+    {
+      "title": "Fabric Detergent",
+      "description": "Everyday powder detergent, quality-checked.",
+      "image": "/reference/3c6b7f49cb9b67c1.jpg",
+      "imageAlt": "Fabric detergent bottle",
+      "price": 120000,
+      "type": "physical",
+      "order": 6
+    },
+    {
+      "title": "Dishwashing Liquid",
+      "description": "Cuts grease fast, tested before it ships.",
+      "image": "/reference/0fbd89b0e0f74b33.jpg",
+      "imageAlt": "Dishwashing liquid bottle",
+      "price": 90000,
+      "type": "physical",
+      "order": 7
+    },
+    {
+      "title": "E-Books",
+      "description": "Curated study guides and reference material written and reviewed by PANS members.",
+      "image": "",
+      "imageAlt": "",
+      "price": 100000,
+      "type": "digital",
+      "order": 8
+    },
+    {
+      "title": "Design Templates",
+      "description": "Flyers, CV templates, and presentation kits — ready to edit for personal or class use.",
+      "image": "",
+      "imageAlt": "",
+      "price": 50000,
+      "type": "digital",
+      "order": 9
+    }
+  ],
+  "legacy": [
+    {
+      "session": "1990/91",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "1991/92",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "1992/93",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "1993/94",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "1994/95",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "1995/96",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "1996/97",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "1997/98",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "1998/99",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "1999/00",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2000/01",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2001/02",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2002/03",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2003/04",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2004/05",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2005/06",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2006/07",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2007/08",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2008/09",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2009/10",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2010/11",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2011/12",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2012/13",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2013/14",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2014/15",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2015/16",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2016/17",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2017/18",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2018/19",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2019/20",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2020/21",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2021/22",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2022/23",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2023/24",
+      "name": "Record to be added",
+      "position": "President"
+    },
+    {
+      "session": "2024/25",
+      "name": "Abu David Adesesan",
+      "position": "President"
+    },
+    {
+      "session": "2025/26",
+      "name": "Record to be added",
+      "position": "President"
+    }
+  ],
+  "events": [
+    {
+      "title": "Leadership Summit",
+      "description": "Governance, public speaking, and team management.",
+      "image": "/reference/6041fac8dc495619.jpg"
+    },
+    {
+      "title": "Politics Summit",
+      "description": "How student and national politics actually work.",
+      "image": "/reference/6b155cc97b1b39d6.jpg"
+    },
+    {
+      "title": "Entrepreneurship Summit",
+      "description": "Registering, marketing, and building a real product.",
+      "image": "/reference/b280c48234255bcb.jpg"
+    },
+    {
+      "title": "Investment Summit",
+      "description": "Savings, forex, stocks, and basic financial literacy.",
+      "image": "/reference/70e3d6a8fdae9db6.jpg"
+    }
+  ],
+  "gallery": [
+    {
+      "caption": "World Pharmacy Day Walk",
+      "image": "/reference/815e979185355818.jpg",
+      "alt": "World Pharmacy Day walk"
+    },
+    {
+      "caption": "Community Health Outreach",
+      "image": "/reference/2e6f0e55676c393d.jpg",
+      "alt": "Community health outreach"
+    },
+    {
+      "caption": "Facility Tour",
+      "image": "/reference/d9944e67bf80a078.jpg",
+      "alt": "Pharmaceutical facility tour"
+    },
+    {
+      "caption": "Facility Briefing",
+      "image": "/reference/3d40d67cbb09edac.jpg",
+      "alt": "Facility tour briefing"
+    },
+    {
+      "caption": "PANS Week — Echelon '26",
+      "image": "/reference/1ed3c3e3cbbec397.jpg",
+      "alt": "PANS Week Echelon 26"
+    },
+    {
+      "caption": "Cultural Night",
+      "image": "/reference/56bf84632ca78875.jpg",
+      "alt": "Cultural night"
+    },
+    {
+      "caption": "Cultural Day",
+      "image": "/reference/692388f433151b9d.jpg",
+      "alt": "Cultural day procession"
+    },
+    {
+      "caption": "Community Clean-Up",
+      "image": "/reference/a917b83ddbb1c6e2.jpg",
+      "alt": "Community clean-up exercise"
+    },
+    {
+      "caption": "PANS Week Opening Address",
+      "image": "/reference/aae73100ec925b52.jpg",
+      "alt": "PANS Week opening address"
+    },
+    {
+      "caption": "Full House",
+      "image": "/reference/c6979ddb68806b0b.jpg",
+      "alt": "PANS UNIJOS group photo"
+    }
+  ],
+  "milestones": [
+    {
+      "title": "Facility audit",
+      "description": "Current systems, software, and lab connectivity assessed.",
+      "complete": false
+    },
+    {
+      "title": "Faculty & ICT partnership",
+      "description": "Co-funding secured with Faculty management and University ICT.",
+      "complete": false
+    },
+    {
+      "title": "Phased upgrade",
+      "description": "Faulty systems repaired, software updated, lab connectivity installed.",
+      "complete": false
+    },
+    {
+      "title": "Fully functional",
+      "description": "Target: ready for practical use by end of first semester.",
+      "complete": false
+    }
+  ],
+  "vision": "A PANS UNIJOS that's actually connected, financially standing on its own feet, and full of members who feel equipped — not just enrolled.",
+  "mission": "To put technology, real partnerships, and structured mentorship to work for every PANSite — academically, financially, professionally — and to build it in a way that outlasts any single tenure.",
+  "fonts": [
+    "/reference/23c5a18ce60b095c.ttf",
+    "/reference/c5258e32a25d1bbf.ttf"
+  ]
+}
