@@ -34,6 +34,7 @@ export default async function HomePage({
     }),
     payload.find({
       collection: "products",
+      select: { content: false },
       sort: "displayOrder",
       limit: 30,
       depth: 1,
@@ -41,6 +42,7 @@ export default async function HomePage({
     }),
     payload.find({
       collection: "leadership",
+      select: { content: false },
       sort: "-session",
       limit: 100,
       depth: 0,
@@ -48,6 +50,7 @@ export default async function HomePage({
     }),
     payload.find({
       collection: "events",
+      select: { content: false },
       sort: "startsAt",
       limit: 4,
       depth: 1,
@@ -63,12 +66,14 @@ export default async function HomePage({
     }),
     payload.find({
       collection: "projects",
+      select: { content: false },
       limit: 1,
       depth: 0,
       overrideAccess: false,
     }),
     payload.find({
       collection: "resources",
+      select: { content: false },
       sort: "-createdAt",
       limit: 3,
       depth: 1,
@@ -76,6 +81,7 @@ export default async function HomePage({
     }),
     payload.find({
       collection: "articles",
+      select: { content: false },
       sort: "-createdAt",
       limit: 3,
       depth: 1,
@@ -83,6 +89,7 @@ export default async function HomePage({
     }),
     payload.find({
       collection: "opportunities",
+      select: { content: false },
       sort: "-createdAt",
       limit: 3,
       depth: 0,

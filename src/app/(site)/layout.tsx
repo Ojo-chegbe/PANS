@@ -6,7 +6,8 @@ import { settings, getSession } from "@/lib/payload";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CartProvider } from "@/components/Cart";
-export const dynamic = "force-dynamic";
+// getSession reads request headers, keeping account UI dynamic while allowing
+// explicitly cached public settings to be reused across requests.
 export async function generateMetadata(): Promise<Metadata> {
   const site = await settings();
   return {

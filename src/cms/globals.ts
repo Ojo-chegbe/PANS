@@ -2,6 +2,7 @@ import type { GlobalConfig } from "payload";
 import { staff } from "@/lib/access";
 import { isStaff, type Actor } from "@/lib/domain";
 import { sections } from "@/lib/sections";
+import { invalidateSiteSettings } from "@/lib/site-cache";
 const access = { read: () => true, update: staff };
 export const Home: GlobalConfig = {
   slug: "home",
@@ -109,6 +110,14 @@ export const Settings: GlobalConfig = {
   admin: { group: "Website" },
   access,
   versions: { max: 30 },
+  hooks: {
+    afterChange: [
+      ({ doc }) => {
+        invalidateSiteSettings();
+        return doc;
+      },
+    ],
+  },
   fields: [
     {
       name: "siteName",

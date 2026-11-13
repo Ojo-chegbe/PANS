@@ -93,6 +93,8 @@ export default async function Listing({
   if (section === "store" && query.type)
     where.and.push({ type: { equals: query.type } });
   const result = await list(config.collection, {
+    // Cards do not render full rich-text articles or course descriptions.
+    select: { content: false },
     where: where.and.length ? where : {},
     sort:
       section === "legacy"

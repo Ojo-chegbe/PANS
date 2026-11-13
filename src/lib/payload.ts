@@ -1,16 +1,24 @@
-import { getPayload } from "payload";
-import config from "@payload-config";
 import { headers } from "next/headers";
+import { unstable_cache } from "next/cache";
 import { cache } from "react";
 import { redirect } from "next/navigation";
 import { safeNext } from "./domain";
 import type { RecordData } from "./domain";
-export const getCMS = () => getPayload({ config });
-export const getSession = cache(async () => {
-  const payload = await getCMS();
-  const { user } = await payload.auth({ headers: await headers() });
-  return user;
+import { requestSession } from "./request-session";
+import { SITE_SETTINGS_TAG } from "./site-cache";
+
+// Keep database drivers, the CMS schema and the upload stack off the startup
+// path for pages that can use cached public settings without accessing the CMS.
+export const getCMS = cache(async () => {
+  const [{ getPayload }, { default: config }] = await Promise.all([
+    import("payload"),
+    import("@payload-config"),
+  ]);
+  return getPayload({ config });
 });
+export const getSession = cache(async () =>
+  requestSession(await headers(), getCMS),
+);
 export async function requireSession() {
   const user = await getSession();
   if (!user) {
@@ -32,22 +40,39 @@ export async function list(
     ...options,
   } as any);
 }
-export async function bySlug(collection: string, slug: string, user?: any) {
-  const result = await list(collection, {
-    where: { slug: { equals: slug } },
-    limit: 1,
-    user,
-  });
-  return result.docs[0] as RecordData | undefined;
-}
+export const bySlug = cache(
+  async (collection: string, slug: string, user?: any) => {
+    const result = await list(collection, {
+      where: { slug: { equals: slug } },
+      limit: 1,
+      user,
+    });
+    return result.docs[0] as RecordData | undefined;
+  },
+);
 export function mediaURL(media: any, fallback = "") {
   return typeof media === "object" && media
     ? media.sizes?.card?.url || media.url || fallback
     : fallback;
 }
-export const settings = cache(async function settings() {
+async function readSettings() {
   const payload = await getCMS();
-  return payload.findGlobal({ slug: "settings", overrideAccess: false });
+  return payload.findGlobal({
+    slug: "settings",
+    depth: 0,
+    overrideAccess: false,
+  });
+}
+// Settings contain public navigation/contact text, no user state or expiring
+// media links. Admin saves invalidate this cache; CLI changes expire in a minute.
+const cachedSettings = unstable_cache(readSettings, ["pans-site-settings-v1"], {
+  tags: [SITE_SETTINGS_TAG],
+  revalidate: 60,
+});
+export const settings = cache(async function settings() {
+  return process.env.NODE_ENV === "production"
+    ? cachedSettings()
+    : readSettings();
 });
 export async function pageIntro(
   key: string,
