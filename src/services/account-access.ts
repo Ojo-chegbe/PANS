@@ -5,7 +5,10 @@ import { DomainError } from "../lib/domain";
 import { readVerificationToken, verificationEmail } from "../lib/account-links";
 import { rateLimit } from "../lib/security";
 import { transaction } from "../lib/transactions";
-import { emailDeliveryConfigured } from "../lib/email-config";
+import {
+  emailConfigurationError,
+  emailDeliveryConfigured,
+} from "../lib/email-config";
 
 const emailInput = z.object({
   email: z
@@ -23,6 +26,8 @@ export const resetInput = z.object({
     .max(128),
 });
 export function accessEmailMessage(kind: "verification" | "reset") {
+  if (emailConfigurationError())
+    return "Email delivery is temporarily unavailable. Please try again later.";
   return emailDeliveryConfigured()
     ? `If this email belongs to an ${kind === "verification" ? "unverified " : ""}account, a ${kind} link has been sent. Check your inbox and spam folder.`
     : `If this email belongs to an ${kind === "verification" ? "unverified " : ""}account, its ${kind} link has been saved in the local preview outbox. Ask the site owner for the link; no email will arrive in your inbox.`;
@@ -33,6 +38,11 @@ export async function requestAccessEmail(
   body: unknown,
 ) {
   const { email } = emailInput.parse(body);
+  if (emailConfigurationError())
+    throw new DomainError(
+      "Email delivery is temporarily unavailable. Please try again later.",
+      503,
+    );
   // Apply the same limits even when the email is unknown or already verified.
   await rateLimit(payload, `${kind}-cooldown:${email}`, 1, 1);
   await rateLimit(payload, `${kind}-email:${email}`, 3, 60);

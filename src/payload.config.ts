@@ -11,7 +11,6 @@ import { allCollections } from "./cms/collections";
 import { Home, Settings } from "./cms/globals";
 import { emailAdapter } from "./lib/email";
 import { isLocalPreview } from "./lib/environment";
-import { emailDeliveryConfigured, emailSender } from "./lib/email-config";
 import { postgresConnection } from "./lib/database";
 import { staff, administrator, nobody } from "./lib/access";
 import { isStaff, type Actor } from "./lib/domain";
@@ -40,21 +39,10 @@ if (
   process.env.NEXT_PHASE !== "phase-production-build" &&
   (!process.env.PAYLOAD_SECRET ||
     !process.env.DATABASE_URL ||
-    !emailDeliveryConfigured() ||
     !process.env.S3_BUCKET)
 )
   throw new Error(
-    "Production requires PAYLOAD_SECRET, DATABASE_URL, email delivery (RESEND_API_KEY or SMTP_HOST) and S3_BUCKET. See .env.example.",
-  );
-if (
-  process.env.NODE_ENV === "production" &&
-  !isLocalPreview() &&
-  process.env.NEXT_PHASE !== "phase-production-build" &&
-  process.env.RESEND_API_KEY?.trim() &&
-  /@resend\.dev$/i.test(emailSender().address)
-)
-  throw new Error(
-    "Production Resend delivery requires EMAIL_FROM_ADDRESS on a verified domain. The resend.dev sender is for local testing only.",
+    "Production requires PAYLOAD_SECRET, DATABASE_URL and S3_BUCKET. See .env.example.",
   );
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || readFileSync(secretPath, "utf8"),

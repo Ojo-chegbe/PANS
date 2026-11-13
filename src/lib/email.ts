@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 import nodemailer from "nodemailer";
 import type { EmailAdapter, SendEmailOptions } from "payload";
 import { isLocalPreview } from "./environment";
-import { emailSender } from "./email-config";
+import { emailConfigurationError, emailSender } from "./email-config";
 
 function addresses(value: SendEmailOptions["to"]) {
   if (!value) return undefined;
@@ -28,6 +28,11 @@ export const emailAdapter: EmailAdapter = ({ payload }) => ({
   defaultFromAddress: emailSender().address,
   defaultFromName: emailSender().name,
   sendEmail: async (message) => {
+    const configurationError = emailConfigurationError();
+    if (configurationError) {
+      payload.logger.error(configurationError);
+      throw new Error("Email delivery is unavailable. Please try again later.");
+    }
     if (process.env.RESEND_API_KEY?.trim()) {
       if (message.attachments?.length)
         throw new Error(

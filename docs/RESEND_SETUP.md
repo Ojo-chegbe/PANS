@@ -1,6 +1,6 @@
 # Connect Resend
 
-The app sends verification, password-reset, and queued notification emails through the Resend HTTP API when `RESEND_API_KEY` is configured. Resend takes priority over SMTP. If neither is set, local development keeps messages in `.data/mail`; normal production refuses to start without email configuration.
+The app sends verification, password-reset, and queued notification emails through the Resend HTTP API when `RESEND_API_KEY` is configured. Resend takes priority over SMTP. If neither is set, local development keeps messages in `.data/mail`. In production, missing email configuration or the Resend test sender blocks email operations and returns a temporary-unavailability response for registration and account-link requests; public pages and existing-account sign-in remain available.
 
 ## Receive emails now, without a domain
 
@@ -28,15 +28,17 @@ Verify the domain in [Resend Domains](https://resend.com/domains), adding the DN
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/configure-resend.ps1 -SenderAddress noreply@your-domain.com
 ```
 
-Use a domain-restricted sending key where appropriate and set the deployed `NEXT_PUBLIC_SERVER_URL`. Production configuration rejects the `resend.dev` test sender.
+Use a domain-restricted sending key where appropriate and set the deployed `NEXT_PUBLIC_SERVER_URL`. Production email delivery rejects the `resend.dev` test sender.
 
-The same settings can be entered directly in `.env.local` or the hosting provider's private environment settings:
+For local testing, the same settings can be entered directly in `.env.local`:
 
 ```dotenv
 RESEND_API_KEY=your_real_api_key
 EMAIL_FROM_ADDRESS=onboarding@resend.dev
 EMAIL_FROM_NAME=PANS UNIJOS
 ```
+
+For a hosted deployment, set `RESEND_API_KEY`, `EMAIL_FROM_ADDRESS` (for example, `noreply@your-domain.com` on a domain verified in Resend), and `EMAIL_FROM_NAME` in the hosting provider's private environment settings for the target deployment environment, then redeploy. Do not copy `onboarding@resend.dev` into production. Setting a sender address does not verify its domain; complete the DNS verification in Resend first.
 
 ## If a message does not arrive
 

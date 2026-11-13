@@ -4,7 +4,10 @@ import { Input, Select, levels } from "@/components/Fields";
 import { PasswordInput } from "@/components/PasswordInput";
 import { PageIntro } from "@/components/Content";
 import { safeNext } from "@/lib/domain";
-import { emailDeliveryConfigured } from "@/lib/email-config";
+import {
+  emailConfigurationError,
+  emailDeliveryConfigured,
+} from "@/lib/email-config";
 export const metadata = { title: "Join the community" };
 export default async function Join({
   searchParams,
@@ -51,9 +54,11 @@ export default async function Join({
             />
             <p className="form-note">
               Use at least 12 characters.{" "}
-              {emailDeliveryConfigured()
-                ? "We will email a link to verify your account."
-                : "Email delivery is not connected in this preview. The site owner can provide your verification link."}
+              {emailConfigurationError()
+                ? "Registration is temporarily unavailable while email delivery is being restored. Please try again later."
+                : emailDeliveryConfigured()
+                  ? "We will email a link to verify your account."
+                  : "Email delivery is not connected in this preview. The site owner can provide your verification link."}
             </p>
             <label className="check-field">
               <input name="consent" type="checkbox" required />

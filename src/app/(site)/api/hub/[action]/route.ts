@@ -11,7 +11,10 @@ import {
 } from "@/services/commerce";
 import * as actions from "@/services/actions";
 import { requestAccessEmail } from "@/services/account-access";
-import { emailDeliveryConfigured } from "@/lib/email-config";
+import {
+  emailConfigurationError,
+  emailDeliveryConfigured,
+} from "@/lib/email-config";
 export async function POST(
   request: Request,
   { params }: { params: Promise<{ action: string }> },
@@ -55,6 +58,11 @@ export async function POST(
     );
     let result: any;
     if (action === "register") {
+      if (emailConfigurationError())
+        throw new DomainError(
+          "Registration is temporarily unavailable while email delivery is being restored. Please try again later.",
+          503,
+        );
       const data = z
         .object({
           name: z.string().trim().min(2).max(120),
