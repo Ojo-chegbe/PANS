@@ -24,7 +24,8 @@ test("public images load from the current origin and the lightbox loads on deman
   expect(response.status()).toBe(200);
   expect(response.headers()["content-type"]).toMatch(/^image\//);
   expect(response.headers()["cache-control"]).toContain("public");
-  expect(response.headers()["cache-control"]).toContain("s-maxage=86400");
+  // Vercel consumes shared-cache directives before forwarding headers to clients.
+  expect(response.headers()["cache-control"]).toContain("max-age=3600");
 
   const lightbox = page.locator(".lightbox");
   await expect(lightbox.locator("img")).toHaveCount(0);
