@@ -93,7 +93,13 @@ export default buildConfig({
           Boolean((req.user as Actor | null)?.roles?.includes("contributor")),
       },
       collections: {
-        media: { prefix: "media", signedDownloads: { expiresIn: 900 } },
+        // Stream public images through the app so Vercel can cache the bytes.
+        // Signed redirects have no reusable cache headers and expire.
+        media: {
+          prefix: "media",
+          generateFileURL: ({ filename }) =>
+            `/api/media/file/${encodeURIComponent(filename)}`,
+        },
         files: { prefix: "files", signedDownloads: { expiresIn: 7200 } },
       },
       config: {

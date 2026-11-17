@@ -1,10 +1,12 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { MediaImage } from "./MediaImage";
 export function Gallery({ photos }: { photos: any[] }) {
   const track = useRef<HTMLDivElement>(null),
     dialog = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState(0),
-    [full, setFull] = useState(0);
+    [full, setFull] = useState(0),
+    [isOpen, setIsOpen] = useState(false);
   const go = (target: number) => {
     const next = Math.max(0, Math.min(photos.length - 1, target));
     setIndex(next);
@@ -32,7 +34,6 @@ export function Gallery({ photos }: { photos: any[] }) {
     return (
       <p className="empty-state">Community moments will appear here soon.</p>
     );
-  const src = (photo: any) => photo.image?.url || "";
   return (
     <>
       <div className="marquee-wrap">
@@ -81,11 +82,13 @@ export function Gallery({ photos }: { photos: any[] }) {
               aria-label={"Open " + photo.caption}
               onClick={() => {
                 setFull(i);
+                setIsOpen(true);
                 dialog.current?.showModal();
               }}
             >
-              <img
-                src={src(photo)}
+              <MediaImage
+                image={photo.image}
+                sizes="(max-width: 700px) 90vw, (max-width: 1200px) 80vw, 1000px"
                 alt={photo.image?.alt || photo.caption}
                 loading="lazy"
               />
@@ -140,6 +143,7 @@ export function Gallery({ photos }: { photos: any[] }) {
         ref={dialog}
         className="lightbox"
         aria-label="Community photograph"
+        onClose={() => setIsOpen(false)}
       >
         <div className="lightbox-toolbar">
           <span>
@@ -152,10 +156,15 @@ export function Gallery({ photos }: { photos: any[] }) {
             Close
           </button>
         </div>
-        <img
-          src={src(photos[full])}
-          alt={photos[full].image?.alt || photos[full].caption}
-        />
+        {isOpen && (
+          <MediaImage
+            image={photos[full].image}
+            original
+            sizes="(max-width: 1200px) 96vw, 1160px"
+            loading="eager"
+            alt={photos[full].image?.alt || photos[full].caption}
+          />
+        )}
         <div className="lightbox-toolbar">
           <button
             className="text-button"

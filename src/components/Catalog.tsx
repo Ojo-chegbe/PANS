@@ -2,8 +2,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { AddToBasket } from "./Cart";
+import { MediaImage } from "./MediaImage";
+import { mediaURL } from "@/lib/media";
 import { money, type RecordData } from "@/lib/domain";
-const photo = (doc: any) => doc?.sizes?.card?.url || doc?.url || "";
 export function ProductCard({ product }: { product: RecordData }) {
   const className = product.type === "physical" ? "detergent" : "course";
   const unavailable =
@@ -18,15 +19,15 @@ export function ProductCard({ product }: { product: RecordData }) {
         : "";
   return (
     <article className={className + "-card"}>
-      {photo(product.image) && (
+      {mediaURL(product.image) && (
         <Link
           href={"/store/" + product.slug}
           className={className + "-art has-photo"}
           tabIndex={-1}
           aria-hidden="true"
         >
-          <img
-            src={photo(product.image)}
+          <MediaImage
+            image={product.image}
             alt={product.image?.alt || ""}
             loading="lazy"
           />

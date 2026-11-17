@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MediaImage } from "@/components/MediaImage";
 import { notFound } from "next/navigation";
 import { sections } from "@/lib/sections";
 import { bySlug, getSession, list, mediaURL, getCMS } from "@/lib/payload";
@@ -491,9 +492,11 @@ export default async function Detail({
             description={doc.description}
           />
           {section !== "community" && mediaURL(doc.image) && (
-            <img
+            <MediaImage
               className="detail-image"
-              src={mediaURL(doc.image)}
+              image={doc.image}
+              sizes="(max-width: 900px) 100vw, 860px"
+              loading="eager"
               alt={doc.image?.alt || ""}
             />
           )}

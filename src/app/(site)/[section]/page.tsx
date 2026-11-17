@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MediaImage } from "@/components/MediaImage";
 import { notFound } from "next/navigation";
 import { sections } from "@/lib/sections";
 import { list, bySlug, getCMS, pageIntro } from "@/lib/payload";
@@ -52,9 +53,10 @@ export default async function Listing({
             </section>
           ) : block.blockType === "image" ? (
             <figure key={block.id || i}>
-              <img
+              <MediaImage
                 className="detail-image"
-                src={block.image?.url}
+                image={block.image}
+                sizes="(max-width: 1200px) 100vw, 1200px"
                 alt={block.image?.alt || ""}
               />
               <figcaption>{block.caption}</figcaption>

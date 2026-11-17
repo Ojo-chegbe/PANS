@@ -6,6 +6,7 @@ import { safeNext } from "./domain";
 import type { RecordData } from "./domain";
 import { requestSession } from "./request-session";
 import { SITE_SETTINGS_TAG } from "./site-cache";
+export { mediaURL } from "./media";
 
 // Keep database drivers, the CMS schema and the upload stack off the startup
 // path for pages that can use cached public settings without accessing the CMS.
@@ -50,11 +51,6 @@ export const bySlug = cache(
     return result.docs[0] as RecordData | undefined;
   },
 );
-export function mediaURL(media: any, fallback = "") {
-  return typeof media === "object" && media
-    ? media.sizes?.card?.url || media.url || fallback
-    : fallback;
-}
 async function readSettings() {
   const payload = await getCMS();
   return payload.findGlobal({

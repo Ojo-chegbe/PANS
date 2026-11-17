@@ -1,4 +1,5 @@
 import path from "node:path";
+import { publicMediaHeaders } from "@/lib/media";
 import { isLocalPreview } from "@/lib/environment";
 import { verificationEmail } from "@/lib/account-links";
 import { accountEndpoints } from "./account-endpoints";
@@ -284,6 +285,7 @@ export const Media: CollectionConfig = {
       { name: "thumbnail", width: 320, withoutEnlargement: true },
     ],
     adminThumbnail: "thumbnail",
+    modifyResponseHeaders: publicMediaHeaders,
     formatOptions: { format: "webp", options: { quality: 82 } },
   },
   hooks: {

@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { MediaImage } from "@/components/MediaImage";
 import { getCMS, getSession, mediaURL } from "@/lib/payload";
 import { isStaff, owns, type Actor } from "@/lib/domain";
 import { PageIntro, Body } from "@/components/Content";
@@ -49,9 +50,10 @@ export default async function Preview({
       </p>
       <PageIntro title={doc.title} description={doc.description} />
       {mediaURL(doc.image) && (
-        <img
+        <MediaImage
           className="detail-image"
-          src={mediaURL(doc.image)}
+          image={doc.image}
+          sizes="(max-width: 1200px) 100vw, 1200px"
           alt={doc.image?.alt || ""}
         />
       )}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MediaImage } from "./MediaImage";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import { mediaURL } from "@/lib/payload";
 import { externalURL } from "@/lib/security";
@@ -36,8 +37,8 @@ export function EventCard({ event }: { event: any }) {
           tabIndex={-1}
           aria-hidden="true"
         >
-          <img
-            src={mediaURL(event.image)}
+          <MediaImage
+            image={event.image}
             alt={event.image?.alt || ""}
             loading="lazy"
           />
@@ -81,8 +82,8 @@ export function ContentCard({ doc, section }: { doc: any; section: string }) {
           tabIndex={-1}
           aria-hidden="true"
         >
-          <img
-            src={mediaURL(doc.image)}
+          <MediaImage
+            image={doc.image}
             alt={doc.image?.alt || ""}
             loading="lazy"
           />

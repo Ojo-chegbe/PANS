@@ -18,9 +18,10 @@ Use an R2 token with Object Read & Write permission restricted to this bucket. N
 
 ## Access and delivery
 
-- Public images use the `media/` object prefix and the app's public media read access.
+- Public images use the `media/` object prefix and the app's public media read access. Their URLs are relative to the current site, so a stale `NEXT_PUBLIC_SERVER_URL` cannot point visitors at localhost. The app streams images with a one-hour browser cache, a one-day shared CDN cache and stale revalidation. Only successful public media responses receive these headers; protected files retain their access checks and signed downloads.
 - Course videos and downloads use the `files/` prefix. Payload checks the existing file permissions before redirecting an authorized viewer to a signed R2 URL.
-- Signed image URLs last 15 minutes; signed protected-file URLs last two hours. Anyone holding a signed URL can use it until it expires, including after a permission change. This is temporary link access, not DRM.
+- Signed protected-file URLs last two hours. Anyone holding a signed URL can use it until it expires, including after a permission change. This is temporary link access, not DRM. Public images do not use expiring signed redirects. Image replacements use new filenames; deleted public images may remain in caches until their cache lifetime expires.
+- Image cards and gallery slides expose existing thumbnail, card and original widths through responsive `srcset`/`sizes`. The hero loads eagerly with high priority; full-size lightbox images are mounted only when the gallery opens.
 - Admin uploads use Payload's signed direct-upload flow. The browser sends file bytes to R2, bypassing Vercel's request-body limit. Payload still validates files and processes image sizes on the server.
 - Ordinary image/document uploads retain the **50 MiB** limit. Course videos use a separate **20 GiB resumable uploader** in Files and lesson editing, with bounded MP4 validation and playback-link renewal. See [LARGE_VIDEO_UPLOADS.md](./LARGE_VIDEO_UPLOADS.md). Actual Vercel deployment verification remains separate from local checks.
 

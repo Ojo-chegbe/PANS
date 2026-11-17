@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MediaImage } from "@/components/MediaImage";
 import { getCMS, mediaURL, getSession } from "@/lib/payload";
 import { isStaff, type Actor } from "@/lib/domain";
 import { Catalog } from "@/components/Catalog";
@@ -142,10 +143,12 @@ export default async function HomePage({
           </div>
           <div className="hero-visual">
             {mediaURL(hero.image) && (
-              <img
+              <MediaImage
                 className="bg-photo"
-                src={(hero.image as any)?.url || mediaURL(hero.image)}
+                image={hero.image as any}
                 alt={(hero.image as any)?.alt || "PANS UNIJOS community"}
+                sizes="(max-width: 900px) 100vw, 50vw"
+                loading="eager"
                 fetchPriority="high"
               />
             )}
