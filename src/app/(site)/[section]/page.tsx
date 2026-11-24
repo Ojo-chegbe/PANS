@@ -6,6 +6,7 @@ import { list, bySlug, getCMS, pageIntro } from "@/lib/payload";
 import { PageIntro, ContentCard, EventCard, Body } from "@/components/Content";
 import { ProductCard } from "@/components/Catalog";
 import { Archive } from "@/components/Archive";
+import { MentorDirectory } from "@/components/MentorDirectory";
 export async function generateMetadata({
   params,
 }: {
@@ -77,6 +78,8 @@ export default async function Listing({
       </div>
     );
   }
+  if (section === "mentors")
+    return <MentorDirectory query={query} intro={config} />;
   const page = Math.max(1, Math.min(Number(query.page) || 1, 10000));
   const where: any = { and: [] };
   if (query.q)

@@ -37,9 +37,9 @@ export const sections: Record<
   },
   mentors: {
     collection: "mentors",
-    title: "Find your direction.",
-    eyebrow: "Guidance, structured",
-    description: "Meet people who can help you take the next step.",
+    title: "Mentors",
+    eyebrow: "",
+    description: "",
   },
   legacy: {
     collection: "leadership",

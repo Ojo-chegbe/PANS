@@ -8,6 +8,11 @@ import { AddToBasket } from "@/components/Cart";
 import { ActionButton, ActionForm } from "@/components/ActionForm";
 import { Input, Select, levels } from "@/components/Fields";
 import { Gallery } from "@/components/Gallery";
+import {
+  MentorActions,
+  MentorFacts,
+  type PublicMentor,
+} from "@/components/MentorProfile";
 import { money, relationID, isStaff, type Actor } from "@/lib/domain";
 export async function generateMetadata({
   params,
@@ -411,23 +416,8 @@ export default async function Detail({
     aside = (
       <div className="surface detail-aside">
         <h2>Find your next step.</h2>
-        <p>{doc.position}</p>
-        <p className="form-note">{doc.expertise?.join(" · ")}</p>
-        <span className="status">{doc.availability}</span>
-        <div className="section-actions">
-          {doc.availability !== "unavailable" && (
-            <Link className="btn-primary" href={"/mentorship?mentor=" + doc.id}>
-              Request mentorship
-            </Link>
-          )}
-        </div>
-        {doc.linkedin && (
-          <div className="section-actions">
-            <SafeExternalLink url={doc.linkedin}>
-              LinkedIn profile
-            </SafeExternalLink>
-          </div>
-        )}
+        <MentorFacts mentor={doc as PublicMentor} />
+        <MentorActions mentor={doc as PublicMentor} />
       </div>
     );
   else if (section === "legacy") {
